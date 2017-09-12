@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!contactModelArrayList.contains(phoneNumber)) {
                     contactModelArrayList.add(phoneNumber);
                     //  contactModelArrayList.add(contactModel);
-                    Log.d("phone>>", "" + phoneNumber);
+                    Log.d("phone>>phone>>", "" + phoneNumber);
                 }
                  }
               }
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("MainActivity", "called 5 "+(contactModelArrayList.size() - i)+" and"+(contactModelArrayList.size() - i)+5);
                     }
                 }*/
-                          if(contactModelArrayList.size() < 500)
+                          /*if(contactModelArrayList.size() < 500)
                 new ParseJSONTask(contactModelArrayList.subList(0
                         ,contactModelArrayList.size())).execute();
                           else if (contactModelArrayList.size() >= 500) {
@@ -106,8 +106,46 @@ public class MainActivity extends AppCompatActivity {
                               Log.d("MainActivity5", "contacts sub list "+contactModelArrayList.subList(0
                                       ,500).size()+" second list::"+contactModelArrayList.subList(500
                                       ,contactModelArrayList.size()).size());
-                          }
+                          }*/
+
+
+                if (contactModelArrayList.size() <= 600){
+                    new ParseJSONTask(contactModelArrayList.subList(0, contactModelArrayList.size())).execute();
+                    //Log.d("partition1",""+contacxtModelArrayList.size());
+
+                } else if(contactModelArrayList.size()>=600&&contactModelArrayList.size()<=1200)
+            {
+                new ParseJSONTask(contactModelArrayList.subList(0, 600)).execute();
+                new ParseJSONTask(contactModelArrayList.subList(600, contactModelArrayList.size())).execute();
+                Log.d("",""+contactModelArrayList.subList(0,contactModelArrayList.subList(0, 600).size()));
+                Log.d("MainActivity", "contacts sub list "+contactModelArrayList.subList(0
+                        ,600).size());
+                Log.d("MainActivity", "contacts sub list "+contactModelArrayList.subList(600,contactModelArrayList.size()).size());
+
+                //Log.d("partition2",""+contactModelArrayList.subList(0,contactModelArrayList.size()));
+
+
+            }else if(contactModelArrayList.size()>=1200&&contactModelArrayList.size()<=1800)
+
+            {
+                new ParseJSONTask(contactModelArrayList.subList(0, 600)).execute();
+                new ParseJSONTask(contactModelArrayList.subList(600, 1200)).execute();
+                new ParseJSONTask(contactModelArrayList.subList(1200, contactModelArrayList.size())).execute();
+            }else if(contactModelArrayList.size()>=1800&&contactModelArrayList.size()<=2400)
+
+            {
+                new ParseJSONTask(contactModelArrayList.subList(0, 600)).execute();
+                new ParseJSONTask(contactModelArrayList.subList(600, 1200)).execute();
+                new ParseJSONTask(contactModelArrayList.subList(1200, 1800)).execute();
+                new ParseJSONTask(contactModelArrayList.subList(1800, contactModelArrayList.size())).execute();
             }
+
+
+        }
+
+
+
+
         });
 
 
